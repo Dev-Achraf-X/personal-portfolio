@@ -32,7 +32,7 @@ function ProjectsPage() {
   useEffect(() => {
     const getProject = async () => {
       try {
-        const res = await axios.get(`http://localhost:3001/api/projects/${id}`);
+        const res = await axios.get(`https://achraf-portfolio.onrender.com/api/projects/${id}`);
         const data = await res.data;
         setProject(data);
         setSelectedImg(data.images.url[0]);

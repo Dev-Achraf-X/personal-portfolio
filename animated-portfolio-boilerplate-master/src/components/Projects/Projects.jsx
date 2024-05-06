@@ -24,7 +24,7 @@ function Projects() {
   useEffect(() => {
     const getProjects = async () => {
       try {
-        const res = await axios.get("http://localhost:3001/api/projects");
+        const res = await axios.get("https://achraf-portfolio.onrender.com/api/projects");
         setDisplayableProjects(res.data);
         setProjectData(res.data);
       } catch (error) {
