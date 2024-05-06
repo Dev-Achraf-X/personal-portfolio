@@ -32,7 +32,9 @@ function ProjectsPage() {
   useEffect(() => {
     const getProject = async () => {
       try {
-        const res = await axios.get(`http://localhost:3001/api/projects/${id}`);
+        const res = await axios.get(
+          process.env.REACT_APP_BASE_URL + `/api/projects/${id}`
+        );
         const data = await res.data;
         setProject(data);
         setSelectedImg(data.images.url[0]);

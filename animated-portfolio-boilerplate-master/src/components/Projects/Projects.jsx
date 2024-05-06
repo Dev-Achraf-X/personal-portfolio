@@ -3,7 +3,6 @@ import "./Projects.css";
 import { useState } from "react";
 import { useEffect } from "react";
 import { sumArray } from "../../Helper";
-// import { projects } from "../../data";
 import ProjectCard from "./ProjectCard/ProjectCard";
 import axios from "axios";
 
@@ -25,7 +24,9 @@ function Projects() {
   useEffect(() => {
     const getProjects = async () => {
       try {
-        const res = await axios.get("http://localhost:3001/api/projects");
+        const res = await axios.get(
+          process.env.REACT_APP_BASE_URL + "/api/projects"
+        );
         setDisplayableProjects(res.data);
         setProjectData(res.data);
       } catch (error) {
@@ -37,7 +38,7 @@ function Projects() {
   }, []);
 
   useEffect(() => {
-    const prevEl = itemsEls.current.filter((_, index) => index < activeIdx);
+    const prevEl = itemsEls?.current?.filter((_, index) => index < activeIdx);
     setOffset(sumArray(prevEl.map((item) => item.offsetWidth)));
     setIndicatorWidth(itemsEls.current[activeIdx].offsetWidth);
   }, [activeIdx]);

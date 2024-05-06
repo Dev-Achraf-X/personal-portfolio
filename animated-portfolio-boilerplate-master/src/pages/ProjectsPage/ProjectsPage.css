@@ -31,6 +31,9 @@
 
 .project__page .__left .main__project__image img {
   border-radius: var(--border-radius-2);
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .project__page .__left .select__project__image {
