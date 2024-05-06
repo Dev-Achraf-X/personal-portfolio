@@ -11,8 +11,8 @@
 .project__page .__left {
   width: 100%;
   display: flex;
-  flex-direction: column;
-  gap: 30px;
+  flex-direction: column-reverse;
+  gap: 50px;
 }
 
 .project__page .__left .main__project__image {
