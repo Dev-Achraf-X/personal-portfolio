@@ -1,0 +1,32 @@
+.login__form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+}
+
+.login__form .login__container {
+  width: 600px;
+  height: 80vh;
+  text-align: center;
+  border: 1px solid var(--color-primary);
+  border-radius: var(--border-radius-3);
+  padding: 40px 20px;
+  margin-top: 50px;
+}
+
+.login__form .login__inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  width: 100%;
+  margin-top: 70px;
+}
+
+.login__form .login__btn {
+  font-size: larger;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-top: 60px;
+  padding: 20px 30px;
+}

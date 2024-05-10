@@ -15,17 +15,13 @@ const router = express.Router();
 router.post(
   "/add-project",
   verifyTokenAndAmin,
-  photoUpload.array("images"),
+  photoUpload.array("images", 12),
   createProjectCtr
 );
 
-router.get("/projects",  getAllProjectsCtr);
+router.get("/projects", getAllProjectsCtr);
 
-router.get(
-  "/projects/:id",
-  ValidateObjectId,
-  getProjectCtr
-);
+router.get("/projects/:id", ValidateObjectId, getProjectCtr);
 
 router.put(
   "/projects/:id",

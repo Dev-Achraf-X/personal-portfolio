@@ -14,8 +14,8 @@ const cloudinaryUploadImages = async (filesToUpload) => {
         resource_type: "auto",
       });
     });
-    const results = await Promise.all(uploadPromises);
-    return results;
+    const result = await Promise.all(uploadPromises);
+    return result;
   } catch (error) {
     return error;
   }

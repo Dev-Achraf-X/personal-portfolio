@@ -55,7 +55,8 @@
 }
 
 input,
-textarea {
+textarea,
+select {
   width: 100%;
   padding: 1.5rem;
   border-radius: var(--border-radius-3);
@@ -66,8 +67,19 @@ textarea {
 }
 
 input:focus,
-textarea:focus {
+textarea:focus,
+select:hover,
+select:focus {
   border-color: var(--color-primary);
+}
+
+select {
+  font-size: 18px;
+}
+
+option {
+  font-size: 18px;
+  background: rgb(1, 1, 1);
 }
 
 @media (max-width: 1024px) {

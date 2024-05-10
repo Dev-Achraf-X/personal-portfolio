@@ -20,15 +20,21 @@ function Projects() {
   const [indicatorWidth, setIndicatorWidth] = useState(0);
   const [displayableProjects, setDisplayableProjects] = useState([]);
   const [projectData, setProjectData] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const getProjects = async () => {
+      setLoading(true);
       try {
-        const res = await axios.get("https://achraf-portfolio.onrender.com/api/projects");
+        const res = await axios.get(
+          "https://achraf-portfolio.onrender.com/api/projects"
+        );
         setDisplayableProjects(res.data);
         setProjectData(res.data);
       } catch (error) {
         throw error;
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -78,9 +84,11 @@ function Projects() {
         </nav>
 
         <div className="card__container">
-          {displayableProjects.map((project, idx) => (
-            <ProjectCard project={project} key={project._id} />
-          ))}
+          {loading
+            ? "loading..."
+            : displayableProjects.map((project, idx) => (
+                <ProjectCard project={project} key={project._id} />
+              ))}
         </div>
       </div>
     </section>

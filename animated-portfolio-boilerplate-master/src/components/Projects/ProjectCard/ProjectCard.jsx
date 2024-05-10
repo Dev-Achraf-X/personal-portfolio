@@ -45,25 +45,58 @@ function ProjectCard({ project }) {
                         <div className="stack__icon__container">
                           <span
                             className="stack__icon"
-                            style={{ color: list.stackColor }}
+                            style={{
+                              color:
+                                list.stackName === "react.js"
+                                  ? "#61dafb"
+                                  : list.stackName === "next.js"
+                                  ? "#a8b9c0"
+                                  : list.stackName === "express"
+                                  ? "#c3ccda"
+                                  : list.stackName === "mongoDB"
+                                  ? "#049024"
+                                  : list.stackName === "node.js"
+                                  ? "#68a063"
+                                  : list.stackName === "figma"
+                                  ? "#e04a34"
+                                  : list.stackName === "fluter"
+                                  ? "#54c0f4"
+                                  : list.stackName === "reactNative"
+                                  ? "#61dafb"
+                                  : list.stackName === "HTML"
+                                  ? "#e34c26"
+                                  : list.stackName === "CSS"
+                                  ? "#264de4"
+                                  : list.stackName === "bootstrap"
+                                  ? "#563d7c"
+                                  : list.stackName === "tailwindCss"
+                                  ? "#3c92f2"
+                                  : list.stackName === "shadcn"
+                                  ? "#838c91"
+                                  : list.stackName === "javascript"
+                                  ? "#f0db4f"
+                                  : list.stackName === "typescript"
+                                  ? "#007acc"
+                                  : "skyblue",
+                            }}
                           >
                             {list.stackName === "react.js" && <FaReact />}
                             {list.stackName === "node.js" && <FaNodeJs />}
                             {list.stackName === "express" && <SiExpress />}
-                            {list.stackName === "mongodb" && <SiMongodb />}
+                            {list.stackName === "mongoDB" && <SiMongodb />}
                             {list.stackName === "next.js" && <SiNextdotjs />}
                             {list.stackName === "figma" && <FaFigma />}
                             {list.stackName === "fluter" && <SiFlutter />}
-                            {list.stackName === "react-native" && (
+                            {list.stackName === "reactNative" && (
                               <TbBrandReactNative />
                             )}
-                            {list.stackName === "html" && <FaHtml5 />}
-                            {list.stackName === "css" && <FaCss3Alt />}
+                            {list.stackName === "HTML" && <FaHtml5 />}
+                            {list.stackName === "CSS" && <FaCss3Alt />}
                             {list.stackName === "bootstrap" && <FaBootstrap />}
-                            {list.stackName === "tailwindcss" && (
+                            {list.stackName === "tailwindCss" && (
                               <SiTailwindcss />
                             )}
-                            {list.stackName === "shadcn-ui" && <SiShadcnui />}
+                            {list.stackName === "shadcn" && <SiShadcnui />}
                             {list.stackName === "javascript" && (
                               <SiJavascript />
                             )}
@@ -124,7 +157,7 @@ function ProjectCard({ project }) {
                 target="-blank"
                 className="btn btn_primary"
               >
-                Demo
+                Github
               </Link>
             )}
             <Link to={`/projects/${project._id}`} className="btn btn_primary">

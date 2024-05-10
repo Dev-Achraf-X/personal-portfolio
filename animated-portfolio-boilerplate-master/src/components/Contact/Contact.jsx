@@ -1,11 +1,38 @@
+import React, { useRef, useState } from "react";
 import { MdOutlineEmail } from "react-icons/md";
 import "./Contact.css";
 import { RiMessengerLine } from "react-icons/ri";
 import { BsWhatsapp } from "react-icons/bs";
+import emailjs from "@emailjs/browser";
+import { toast, ToastContainer } from "react-toastify";
 
 function Contact() {
+  const [userName, setUserName] = useState("");
+  const [userEmail, setUserEmail] = useState("");
+  const [userMsg, setUserMsg] = useState("");
+  const form = useRef();
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs
+      .sendForm("service_8x5bnrp", "template_it0kpdf", form.current, {
+        publicKey: "WHFjmv9lDWx9iZQeW",
+      })
+      .then(
+        () => {
+          setUserEmail("");
+          setUserName("");
+          setUserMsg("");
+          toast.success(`Thank you ${userName}. I'll get in touch with you`);
+        },
+        (error) => {
+          console.log("FAILED...", error.text);
+        }
+      );
+  };
   return (
     <section id="contact">
+      <ToastContainer position="top-center" />
       <div className="section__wrapper contact__container">
         <div className="section__header">
           <h2 className="primary__title">Contact Me</h2>
@@ -58,19 +85,31 @@ function Contact() {
             </article>
           </div>
 
-          <form>
-            <input type="text" name="name" placeholder="Your name" required />
+          <form ref={form} onSubmit={sendEmail}>
+            <input
+              type="text"
+              name="user_name"
+              placeholder="Your name"
+              required
+              value={userName}
+              onChange={(e) => setUserName(e.target.value)}
+            />
             <input
               type="email"
-              name="email"
+              name="user_email"
               placeholder="Your email"
               required
+              value={userEmail}
+              onChange={(e) => setUserEmail(e.target.value)}
             />
             <textarea
               name="message"
               rows={7}
               placeholder="Your message"
               id=""
+              required
+              value={userMsg}
+              onChange={(e) => setUserMsg(e.target.value)}
             ></textarea>
             <button type="submit" className="btn btn_primary">
               Send Message

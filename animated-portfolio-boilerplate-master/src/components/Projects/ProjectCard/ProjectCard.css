@@ -52,6 +52,7 @@
 
 .card .card__details h2 {
   transition: var(--transition);
+  text-transform: capitalize;
 }
 
 .card .card__details h2:hover {
@@ -72,6 +73,10 @@
 
 .card .card__details .card__details__middle .description {
   font-size: 14px;
+}
+
+.card .card__details .card__details__middle .description::first-letter {
+  text-transform: capitalize;
 }
 
 .card .card__details .card__details__bottom {

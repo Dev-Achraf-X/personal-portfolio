@@ -1,0 +1,60 @@
+.project__form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.project__form .project__container {
+  width: 600px;
+  text-align: center;
+  border: 1px solid var(--color-primary);
+  border-radius: var(--border-radius-3);
+  margin-top: 50px;
+  margin-bottom: 50px;
+  padding: 12px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.project__form .project__container .project__inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.project__form .project__container .project__inputs .project__info__top,
+.project__form .project__container .project__inputs .project__info__mid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.project__form .project__container .project__inputs .project__info__bottom {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-start: auto;
+  gap: 12px;
+}
+
+.project__form
+  .project__container
+  .project__inputs
+  .project__info__bottom
+  .check__input {
+  width: 100%;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.project__form .logout__btn{
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+.project__form .project__btn{
+  position: relative;
+}

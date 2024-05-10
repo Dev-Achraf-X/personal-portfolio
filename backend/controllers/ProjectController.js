@@ -25,14 +25,16 @@ module.exports.createProjectCtr = asyncHandler(async (req, res) => {
     __dirname,
     `../../images/${req.files.map((file) => file.filename)}`
   );
+
   let paths = imagesPath.split(",");
-  const commonRoot = "E:\\Programming\\Achraf Portfolio-1\\images\\";
+  const commonRoot =
+    "C:\\Users\\hp\\Desktop\\git uploads\\personal-portfolio\\images\\";
   paths = paths.map((path, idx) => {
     if (idx === 0) {
       return path;
     } else {
       const parts = path.split("\\");
-      const index = parts.findIndex((part) => part !== "E:");
+      const index = parts.findIndex((part) => part !== "C:");
       return commonRoot + parts.slice(index).join("\\");
     }
   });
@@ -42,8 +44,7 @@ module.exports.createProjectCtr = asyncHandler(async (req, res) => {
   const publicId = result.map((item) => item.public_id);
 
   const stackArray = req.body.stack.map((item) => ({
-    stackName: item.stackName,
-    stackColor: item.stackColor,
+    stackName: item,
   }));
 
   // create new project and save it to db
