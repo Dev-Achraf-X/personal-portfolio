@@ -7,6 +7,8 @@ import { useEffect, useState, useRef } from "react";
 import { FaTimes } from "react-icons/fa";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
+import LoginLink from "../../Helper/LoginLink";
+import DashLink from "../../Helper/DashLink";
 
 function Navbar() {
   const [showSidebar, setShowSidebar] = useState(false);
@@ -50,6 +52,10 @@ function Navbar() {
     },
     { scope: container }
   );
+
+  const response = localStorage.getItem("responseData");
+  const res = JSON.parse(response);
+  //   console.log(res.isAdmin);
 
   return (
     <nav
@@ -95,6 +101,10 @@ function Navbar() {
         <button className="btn btn_primary">
           Hire Me <FaArrowUpRightFromSquare />
         </button>
+        {!res?.isAdmin ? <LoginLink classLink={"btn"} /> : null}
+
+        {res?.isAdmin ? <DashLink classLink={"btn"} /> : null}
+
         <FaBarsStaggered
           className="menu"
           onClick={() => {

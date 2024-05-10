@@ -36,14 +36,9 @@ app.use(
   )
 );
 
-app.get("*", (req, res) => {
+app.get("/*", (req, res) => {
   res.sendFile(
-    path.join(
-      dirname,
-      "animated-portfolio-boilerplate-master",
-      "build",
-      "index.html "
-    )
+    path.join(dirname, "animated-portfolio-boilerplate-master", "build")
   );
 });
 

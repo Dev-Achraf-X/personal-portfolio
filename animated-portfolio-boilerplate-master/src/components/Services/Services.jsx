@@ -14,7 +14,7 @@ function Services() {
     gsap.fromTo(
       ".services__wrapper",
       {
-        opacity: 0,
+        opacity: 0.8,
       },
       {
         opacity: 1,

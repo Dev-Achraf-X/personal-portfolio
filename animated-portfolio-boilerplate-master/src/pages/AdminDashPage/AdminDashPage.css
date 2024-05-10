@@ -56,5 +56,10 @@
 }
 
 .project__form .project__btn{
+  font-size: 30px;
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 70px;
 }
