@@ -27,6 +27,10 @@ function AdminDashPage() {
       );
     }
   };
+
+  const handleFileChange = (e) => {
+    setSelectedFiles(Array.from(e.target.files));
+  };
   const formData = new FormData();
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -63,7 +67,7 @@ function AdminDashPage() {
     setLoading(true);
     try {
       const res = await axios.post(
-        "https://achraf-portfolio.onrender.com/api/add-project",
+        "http://localhost:3001/api/add-project",
         formData,
         {
           headers: {
@@ -72,19 +76,16 @@ function AdminDashPage() {
           "Content-Type": "multipart/form-data",
         }
       );
-      console.log(res);
       toast.success(res.statusText);
-      navigate("/");
+      setTimeout(() => {
+        navigate("/");
+      }, 3000);
     } catch (error) {
       setError("Error creating project: " + error.message);
       console.error("Error creating project:", error);
     } finally {
       setLoading(false);
     }
-  };
-
-  const handleFileChange = (e) => {
-    setSelectedFiles(Array.from(e.target.files));
   };
 
   const handleLogout = () => {

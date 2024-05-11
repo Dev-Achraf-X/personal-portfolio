@@ -10,6 +10,7 @@ const { cloudinaryUploadImages } = require("../utils/Cloudinary");
 
 module.exports.createProjectCtr = asyncHandler(async (req, res) => {
   // validation for images
+  console.log(req);
   if (!req.files || req.files.length === 0) {
     return res.status(400).json({ message: "no images provided!" });
   }
