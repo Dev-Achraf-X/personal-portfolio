@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { sumArray } from "../../Helper";
 import ProjectCard from "./ProjectCard/ProjectCard";
 import axios from "axios";
+import Spinner from "../../Helper/Spinner/Spinner";
 
 const tabs = [
   { name: "All" },
@@ -84,11 +85,13 @@ function Projects() {
         </nav>
 
         <div className="card__container">
-          {loading
-            ? "loading..."
-            : displayableProjects.map((project, idx) => (
-                <ProjectCard project={project} key={project._id} />
-              ))}
+          {loading ? (
+            <Spinner />
+          ) : (
+            displayableProjects.map((project, idx) => (
+              <ProjectCard project={project} key={project._id} />
+            ))
+          )}
         </div>
       </div>
     </section>

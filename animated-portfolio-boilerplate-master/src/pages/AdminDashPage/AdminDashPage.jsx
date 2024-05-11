@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "./AdminDashPage.css";
 import axios from "axios";
@@ -14,7 +14,8 @@ function AdminDashPage() {
   const [globalLink, setGlobalLink] = useState("");
   const [slectedStack, setSelectedStack] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [Error, setError] = useState(null);
+  const navigate = useNavigate();
 
   const handleCheckboxChange = (e) => {
     const { value, checked } = e.target;
@@ -71,10 +72,12 @@ function AdminDashPage() {
           "Content-Type": "multipart/form-data",
         }
       );
+      console.log(res);
       toast.success(res.statusText);
       navigate("/");
     } catch (error) {
-      setError("Error creating project:", error);
+      setError("Error creating project: " + error.message);
+      console.error("Error creating project:", error);
     } finally {
       setLoading(false);
     }
@@ -84,7 +87,6 @@ function AdminDashPage() {
     setSelectedFiles(Array.from(e.target.files));
   };
 
-  const navigate = useNavigate();
   const handleLogout = () => {
     localStorage.removeItem("responseData");
     navigate("/");
@@ -291,8 +293,12 @@ function AdminDashPage() {
             </div>
           </div>
         </div>
-        <button type="submit" className="btn project__btn color__primary">
-          {error ? (
+        <button
+          type="submit"
+          className="btn project__btn color__primary"
+          onClick={() => setError("")}
+        >
+          {Error ? (
             "Somethig went wrong!"
           ) : loading ? (
             <Spinner />

@@ -10,38 +10,28 @@ const { cloudinaryUploadImages } = require("../utils/Cloudinary");
 
 module.exports.createProjectCtr = asyncHandler(async (req, res) => {
   // validation for images
-  if (!req.files) {
+  if (!req.files || req.files.length === 0) {
     return res.status(400).json({ message: "no images provided!" });
   }
-
   // validation for data
   const { error } = validateProject(req.body);
   if (error) {
     return res.status(400).json({ message: error.details[0].message });
   }
-
   // upload photo
-  const imagesPath = path.join(
-    __dirname,
-    `../../images/${req.files.map((file) => file.filename)}`
-  );
+  const images = req.files.map((file) => ({ path: file.path }));
+  const imagesPath = images.map((item) => item.path);
 
-  let paths = imagesPath.split(",");
-  const commonRoot =
-    "C:\\Users\\hp\\Desktop\\git uploads\\personal-portfolio\\images\\";
-  paths = paths.map((path, idx) => {
-    if (idx === 0) {
-      return path;
-    } else {
-      const parts = path.split("\\");
-      const index = parts.findIndex((part) => part !== "C:");
-      return commonRoot + parts.slice(index).join("\\");
-    }
-  });
   // Upload images to cloundinary
-  const result = await cloudinaryUploadImages(paths);
-  const secureUrl = result.map((item) => item.secure_url);
-  const publicId = result.map((item) => item.public_id);
+  const uploadedImages = await cloudinaryUploadImages(imagesPath);
+  if (!uploadedImages) {
+    return res
+      .status(500)
+      .json({ message: "Failed to upload images to Cloudinary" });
+  }
+
+  const secureUrl = uploadedImages.map((item) => item.secure_url);
+  const publicId = uploadedImages.map((item) => item.public_id);
 
   const stackArray = req.body.stack.map((item) => ({
     stackName: item,
@@ -65,7 +55,7 @@ module.exports.createProjectCtr = asyncHandler(async (req, res) => {
   res.status(201).json(project);
 
   // remove images from the server
-  paths.map((pathItem) => {
+  imagesPath.map((pathItem) => {
     fs.unlinkSync(pathItem);
   });
 });

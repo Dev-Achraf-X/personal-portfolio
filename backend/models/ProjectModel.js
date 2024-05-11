@@ -14,13 +14,13 @@ const projectSchema = new mongoose.Schema(
     },
     images: {
       url: [String],
-      publicId: { String },
+      publicId: [String],
     },
     category: {
       type: String,
       required: true,
     },
-    stack: [{ stackName: { type: String }, stackColor: { type: String } }],
+    stack: [{ stackName: { type: String } }],
     githubLink: {
       type: String,
       default: "",
